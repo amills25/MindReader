@@ -1,106 +1,164 @@
-var pages = [0, 1, 2, 3, 4, 5];
+let pages = [0, 1, 2, 3, 4, 5];
 
 var symbol = ["!", "@", "#", "$", "%", "&", "A", "H", "~", "^"]
 
 var bigText = "";
-var actionBtn = "";
 var helperText = "";
-var resetBtn = "";
+//var actionBtn = "";
+//var resetBtn = "";
 
-bigText() {
-    switch (pages[]){
+function bigText() {
+    switch (pages){
         case 0:
             bigText = "I can read your mind";
+            break;
         case 1:
             bigText = "Pick a number from 01-99";
+            break;
         case 2:
             bigText = "Add both digits together to get a new number";
+            break;
         case 3:
-            bigText = "Subtract you rnew number from the original number";
+            bigText = "Subtract your new number from the original number";
+            break;
         case 4:
             bigText = randomSym();
+            break;
         case 5:
             bigText = randomSym(symbol);
+            break;
     }
 }
 
-helperText() {
-    switch (pages[]){
+function helperText() {
+    switch (pages){
         case 0:
-            actionBtn = "";
+            hide(helperText);
+            break;
         case 1:
-            actionBtn = "when you have your number click next";
+            helperText = "when you have your number click next";
+            break;
         case 2:
-            actionBtn = "Ex: 14 is 1+4=5 \n click next to proceed";
+            helperText = "Ex: 14 is 1+4=5 \n click next to proceed";
+            break;
         case 3:
-            actionBtn = "Ex: 14-5=9 \n click next to proceed";
+            helperText = "Ex: 14-5=9 \n click next to proceed";
+            break;
         case 4:
-            actionBtn = "Find your new number. \n Note the symbol beside the number";
+            helperText = "Find your new number. \n Note the symbol beside the number";
+            break;
         case 5:
-            actionBtn = "Your symbol is: \n";
+            helperText = "Your symbol is: \n";
             randomSym(symbol);
+            break;
     }
 }
 
-actionBtn() {
-    switch (pages[]){
+function actionBtn() {
+    switch (pages){
         case 0:
-            helperText = "";
+            hide(actionBtn);
+            break;
         case 1:
-            helperText = "NEXT";
-            actionBtn();
+            actionBtn = "NEXT";
+            onStateChange();
+            break;
         case 2:
-            helperText = "NEXT";
+            actionBtn = "NEXT";
             actionBtn();
+            break;
         case 3:
-            helperText = "NEXT";
+            actionBtn = "NEXT";
             actionBtn();
+            break;
         case 4:
-            helperText = "REVEAL";
+            actionBtn = "REVEAL";
             actionBtn();
+            break;
         case 5:
-            helperText = "";
+            hide(actionBtn);
+            break;
     }
 }
 
-resetBtn() {
-    switch (pages[]){
+function resetBtn() {
+    switch (pages){
         case 0:
             resetBtn = "GO";
             actionBtn();
+            break;
         case 1:
             resetBtn = "";
             resetBtn();
+            break;
         case 2:
             resetBtn = "";
             resetBtn();
+            break;
         case 3:
             resetBtn = "";
             resetBtn();
+            break;
         case 4:
             resetBtn = "";
             resetBtn();
+            break;
         case 5:
             resetBtn = "";
             resetBtn();
+            break;
     }
 }
 
-let game = {
-    bigText:"",
-    actionBtn:"",
-    helperText:"",
-    resetBtn:"",
-}
-
-currentPage() {
+pageObj.currentPage = function() {
 
 }
 
-hide() {
+pageObj.actionBtn = function() {
 
 }
 
-randomSym() {
+pageObj.resetBtn = function() {
 
+}
+
+pageObj.bigText = function() {
+
+}
+
+pageObj.helperText = function() {
+
+}
+
+//my init()
+function currentPage() {
+    var actionBtn = document.getElementById("");
+    var resetBtn = document.getElementById("");
+    onStateChange();
+}
+
+function hide(element) {
+    element.style.visibility = "hidden";
+}
+
+function randomSym() {
+
+}
+
+function onStateChange() {
+
+}
+
+function modifyBtn(btn, isVisible, text) {
+    //change visibility
+    //change text
+}
+
+class pageObj {
+    constructor(actionBtn, resetBtn, bigText, helperText) {
+        this.actionBtn = actionBtn;
+        this.resetBtn = resetBtn;
+        this.bigText = bigText;
+        this.helperText = helperText;
+    }
 }
