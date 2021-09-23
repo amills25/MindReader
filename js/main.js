@@ -1,14 +1,15 @@
-let pages = [0, 1, 2, 3, 4, 5];
+let currentPage = 0;
 
 var symbol = ["!", "@", "#", "$", "%", "&", "A", "H", "~", "^"]
 
-var bigText = "";
-var helperText = "";
-//var actionBtn = "";
-//var resetBtn = "";
+var bigText = document.getElementById("bigText");
+var helperText = document.getElementById("helperText");
+var actionBtn = document.getElementById("actionBtn");
+var resetBtn = document.getElementById("resetBtn");
+var startBtn = document.getElementById("startBtn");
 
 function bigText() {
-    switch (pages){
+    switch (pages) {
         case 0:
             bigText = "I can read your mind";
             break;
@@ -31,7 +32,7 @@ function bigText() {
 }
 
 function helperText() {
-    switch (pages){
+    switch (pages) {
         case 0:
             hide(helperText);
             break;
@@ -54,111 +55,87 @@ function helperText() {
     }
 }
 
-function actionBtn() {
-    switch (pages){
-        case 0:
-            hide(actionBtn);
-            break;
-        case 1:
-            actionBtn = "NEXT";
-            onStateChange();
-            break;
-        case 2:
-            actionBtn = "NEXT";
-            actionBtn();
-            break;
-        case 3:
-            actionBtn = "NEXT";
-            actionBtn();
-            break;
-        case 4:
-            actionBtn = "REVEAL";
-            actionBtn();
-            break;
-        case 5:
-            hide(actionBtn);
-            break;
-    }
-}
-
-function resetBtn() {
-    switch (pages){
-        case 0:
-            resetBtn = "GO";
-            actionBtn();
-            break;
-        case 1:
-            resetBtn = "";
-            resetBtn();
-            break;
-        case 2:
-            resetBtn = "";
-            resetBtn();
-            break;
-        case 3:
-            resetBtn = "";
-            resetBtn();
-            break;
-        case 4:
-            resetBtn = "";
-            resetBtn();
-            break;
-        case 5:
-            resetBtn = "";
-            resetBtn();
-            break;
-    }
-}
-
-pageObj.currentPage = function() {
-
-}
-
-pageObj.actionBtn = function() {
-
-}
-
-pageObj.resetBtn = function() {
-
-}
-
-pageObj.bigText = function() {
-
-}
-
-pageObj.helperText = function() {
-
-}
-
-//my init()
-function currentPage() {
-    var actionBtn = document.getElementById("");
-    var resetBtn = document.getElementById("");
+function actionBtnMethod() {
+    currentPage++;
     onStateChange();
 }
+actionBtn.addEventListener('click', actionBtnMethod);
+startBtn.addEventListener('click', actionBtnMethod);
+
+function resetBtnMethod() {
+    currentPage = 0;
+    onStateChange();
+}
+resetBtn.addEventListener('click', resetBtnMethod);
 
 function hide(element) {
     element.style.visibility = "hidden";
 }
 
-function randomSym() {
+function show(element) {
+    element.style.visibility = "visible";
+}
 
+function randomSym() {
+    for (var i = 0; i < 100; i++) {
+        if (i % 9) {
+            const random = Math.floor(Math.random() * symbol.length);
+            return random;
+        }
+        return
+    }
 }
 
 function onStateChange() {
-
-}
-
-function modifyBtn(btn, isVisible, text) {
-    //change visibility
-    //change text
-}
-
-class pageObj {
-    constructor(actionBtn, resetBtn, bigText, helperText) {
-        this.actionBtn = actionBtn;
-        this.resetBtn = resetBtn;
-        this.bigText = bigText;
-        this.helperText = helperText;
+    console.log(currentPage);
+    switch (currentPage) {
+        case 0:
+            bigText.innerHTML="I can read your mind";
+            hide(actionBtn);
+            hide(helperText);
+            hide(resetBtn);
+            show(startBtn);
+            break;
+        case 1:
+            bigText.innerHTML="Pick a number from 01-99";
+            show(actionBtn);
+            helperText.innerHTML="when you have your number click next";
+            show(resetBtn);
+            hide(startBtn);
+            break;
+        case 2:
+            bigText.innerHTML="Add both digits together to get a new number";
+            show(actionBtn);
+            helperText.innerHTML="Ex: 14 is 1 + 4 = 5 \n click next to proceed";
+            show(resetBtn);
+            hide(startBtn);
+            break;
+        case 3:
+            bigText.innerHTML="Subtract your new number from the original number";
+            show(actionBtn);
+            helperText.innerHTML="Ex: 14 - 5 = 9 \n click next to proceed";
+            show(resetBtn);
+            hide(startBtn);
+            break;
+        case 4:
+            bigText.innerHTML=randomSym();
+            show(actionBtn);
+            helperText.innerHTML="Find your new number. \n Note the symbol beside the number";
+            show(resetBtn);
+            hide(startBtn);
+            break;
+        default:
+            bigText.innerHTML=randomSym(symbol);
+            show(actionBtn);
+            helperText.innerHTML="Your symbol is: \n" + symbol;
+            show(resetBtn);
+            hide(startBtn);
+            break;
     }
+}
+
+function init(){
+    resetBtnMethod();
+    //initialized any other variables here
+    onStateChange();
 }

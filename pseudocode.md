@@ -36,7 +36,7 @@ As the user, I want to be able to click through the game and see the screen chan
 
 INIT
     Create the state object -- game
-        bigText, helperText, actionBtn, resetBtn
+        bigText, helperText, actionBtn, resetBtn, startBtn
     Establish click handlers for the buttons
     game.init()
     pages=[];
@@ -110,7 +110,9 @@ Class currentPage(){
   * currentPage, actionBtn, resetBtn, bigText, helperText, hide
 
 * INIT()
-  * pages=[]
+  * resetBtnMethod();
+  * //initialized any other variables here
+  * onStateChange();
 
 * currentPage()
   * display the UI
@@ -136,7 +138,10 @@ Class currentPage(){
   * hide or display
 
 * hide()
-  * make text or button disappear on a given page
+  * make text or button hidden on a given page
+
+* show()
+  * make text or button visible on a given page
 
 * randomSym()
   * create symbol string
