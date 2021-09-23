@@ -91,15 +91,15 @@ Class currentPage(){
     resetBtn "arrow symbol" -- run resetBtn()
 
     Page 4:
-    bigText: "0-& \n 1-@ \n 2-$ \n 3-B \n ... to 99" -- run randomSym()
+    bigText: "0-& \n 1-@ \n 2-$ \n 3-B \n ... to 99" -- randomSym()
     actionBtn: "REVEAL" -- run actionBtn()
     helperText: "Find your new number. \n Note the symbol beside the number"
     resetBtn "arrow symbol" -- run resetBtn()
 
     Page 5:
-    bigText: "&" -- returning the string from randomSym(symbol)
+    bigText: yourSym
     actionBtn: hide -- no action
-    helperText: "Your symbol is: \n symbol"
+    helperText: "Your symbol is: \n yourSym"
     resetBtn "arrow symbol" -- run resetBtn()
 }
 
@@ -111,7 +111,6 @@ Class currentPage(){
 
 * INIT()
   * resetBtnMethod();
-  * //initialized any other variables here
   * onStateChange();
 
 * currentPage()
@@ -144,8 +143,11 @@ Class currentPage(){
   * make text or button visible on a given page
 
 * randomSym()
-  * create symbol string
-  * gives us a random symbol for every n%9=0
+  * create empty symbol string
+  * create random num for div by 9
+  * for loop
+  * nested if for what is div by 9 or not
+  * set yourSym = random number we made above
   * returns a string
 
 ### END

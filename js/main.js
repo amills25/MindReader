@@ -113,6 +113,5 @@ function onStateChange() {
 
 function init(){
     resetBtnMethod();
-    //initialized any other variables here
     onStateChange();
 }
