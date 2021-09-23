@@ -1,6 +1,10 @@
 let currentPage = 0;
 
-var symbol = ["!", "@", "#", "$", "%", "&", "A", "H", "~", "^"]
+var symbol1 = ["!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^"];
+var symbol2 = ["!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^", "!", "@", "#", "$", "%", "&", "A", "H", "~", "^"];
+var symbol = symbol1.concat(symbol2);
+
+var yourSym = null;
 
 var bigText = document.getElementById("bigText");
 var helperText = document.getElementById("helperText");
@@ -32,13 +36,20 @@ function show(element) {
 }
 
 function randomSym() {
-    for (var i = 0; i < 100; i++) {
-        if (i % 9) {
-            const random = Math.floor(Math.random() * symbol.length);
-            return random;
+    var symString = "";
+    var randomNine = symbol[Math.floor(Math.random() * symbol.length)];
+
+    for (var i = 0; i < symbol.length; i++) {
+        
+        if (i % 9 === 0) {
+            symString = symString + i + " - " + randomNine + "<br/>";
+        } else {
+            var random = symbol[Math.floor(Math.random() * symbol.length)];
+            symString = symString + i + " - " + random + "<br/>";
+            yourSym = randomNine;
         }
-        return
     }
+    return symString;
 }
 
 function onStateChange() {
@@ -66,7 +77,7 @@ function onStateChange() {
             show(actionBtn);
             hide(revBtn);
             show(helperText);
-            helperText.innerHTML="Ex: 14 is 1 + 4 = 5 \n click next to proceed";
+            helperText.innerHTML="Ex: 14 is 1 + 4 = 5 <br/> click next to proceed";
             show(resetBtn);
             hide(startBtn);
             break;
@@ -75,7 +86,7 @@ function onStateChange() {
             show(actionBtn);
             hide(revBtn);
             show(helperText);
-            helperText.innerHTML="Ex: 14 - 5 = 9 \n click next to proceed";
+            helperText.innerHTML="Ex: 14 - 5 = 9 <br/> click next to proceed";
             show(resetBtn);
             hide(startBtn);
             break;
@@ -84,16 +95,16 @@ function onStateChange() {
             hide(actionBtn);
             show(revBtn);
             show(helperText);
-            helperText.innerHTML="Find your new number. \n Note the symbol beside the number";
+            helperText.innerHTML="Find your new number. <br/> Note the symbol beside the number";
             show(resetBtn);
             hide(startBtn);
             break;
         default:
-            bigText.innerHTML=randomSym(symbol);
+            bigText.innerHTML = yourSym;
             hide(actionBtn);
             hide(revBtn);
             show(helperText);
-            helperText.innerHTML="Your symbol is: \n" + randomSym(symbol);
+            helperText.innerHTML="Your symbol is: <br/>" + yourSym;
             show(resetBtn);
             hide(startBtn);
             break;
